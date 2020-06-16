@@ -3,21 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTask.Data", "Data\InterviewTask.Data\InterviewTask.Data.csproj", "{724F69DD-53CB-400A-A892-7C7229FF360F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Data", "Data\InterviewTask.Data\InterviewTask.Data.csproj", "{724F69DD-53CB-400A-A892-7C7229FF360F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{0178F06B-CB6C-4151-BC47-CCACA14AADCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTask.Data.Models", "Data\InterviewTask.Data.Models\InterviewTask.Data.Models.csproj", "{3BC030E3-A5DD-483C-A5EF-29C6DF29E9C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Data.Models", "Data\InterviewTask.Data.Models\InterviewTask.Data.Models.csproj", "{3BC030E3-A5DD-483C-A5EF-29C6DF29E9C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{256E486B-4877-4D9F-9819-631C250ACF22}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D401DE12-10C0-4F22-AEC7-8B7524C3675D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTask.Services", "Services\InterviewTask.Services\InterviewTask.Services.csproj", "{B5A9C3F9-E525-4982-8146-8ADEB34B5637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Services", "Services\InterviewTask.Services\InterviewTask.Services.csproj", "{B5A9C3F9-E525-4982-8146-8ADEB34B5637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTask.Services.Models", "Services\InterviewTask.Services.Models\InterviewTask.Services.Models.csproj", "{5D27CD20-9EA5-4A31-8A63-B8972AEA85AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Services.Models", "Services\InterviewTask.Services.Models\InterviewTask.Services.Models.csproj", "{5D27CD20-9EA5-4A31-8A63-B8972AEA85AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTask.Services.Mapping", "Services\InterviewTask.Services.Mapping\InterviewTask.Services.Mapping.csproj", "{16FEDCC8-0736-45A6-B270-BA6FAC3157F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Services.Mapping", "Services\InterviewTask.Services.Mapping\InterviewTask.Services.Mapping.csproj", "{16FEDCC8-0736-45A6-B270-BA6FAC3157F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTask.Web.ViewModels", "Web\InterviewTask.Web.ViewModels\InterviewTask.Web.ViewModels.csproj", "{02E400A9-89EE-45A7-AD98-7C564763C4D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTask.Web.BindingModels", "Web\InterviewTask.Web.BindingModels\InterviewTask.Web.BindingModels.csproj", "{F82508D7-4475-4BFD-B18B-22BE1C465B05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{16FEDCC8-0736-45A6-B270-BA6FAC3157F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16FEDCC8-0736-45A6-B270-BA6FAC3157F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16FEDCC8-0736-45A6-B270-BA6FAC3157F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02E400A9-89EE-45A7-AD98-7C564763C4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E400A9-89EE-45A7-AD98-7C564763C4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E400A9-89EE-45A7-AD98-7C564763C4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E400A9-89EE-45A7-AD98-7C564763C4D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F82508D7-4475-4BFD-B18B-22BE1C465B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F82508D7-4475-4BFD-B18B-22BE1C465B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F82508D7-4475-4BFD-B18B-22BE1C465B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F82508D7-4475-4BFD-B18B-22BE1C465B05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +67,8 @@ Global
 		{B5A9C3F9-E525-4982-8146-8ADEB34B5637} = {256E486B-4877-4D9F-9819-631C250ACF22}
 		{5D27CD20-9EA5-4A31-8A63-B8972AEA85AF} = {256E486B-4877-4D9F-9819-631C250ACF22}
 		{16FEDCC8-0736-45A6-B270-BA6FAC3157F7} = {256E486B-4877-4D9F-9819-631C250ACF22}
+		{02E400A9-89EE-45A7-AD98-7C564763C4D2} = {D401DE12-10C0-4F22-AEC7-8B7524C3675D}
+		{F82508D7-4475-4BFD-B18B-22BE1C465B05} = {D401DE12-10C0-4F22-AEC7-8B7524C3675D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37FA5CC6-FFA8-4344-A910-52138387AD75}

@@ -1,14 +1,13 @@
-﻿namespace InterviewTask.Services.Models.Employee
+﻿namespace InterviewTask.Web.ViewModels.Employee
 {
-    using Data.Models.Employee;
-    using Mapping;
-    using Office;
+    using InterviewTask.Services.Mapping;
+    using Services.Models.Employee;
+    using Services.Models.Office;
     using System;
-    using System.ComponentModel.DataAnnotations;
 
-    public class EmployeeServiceModel : IMapFrom<Employee>, IMapTo<Employee>
+    public class EmployeeViewModel : IMapFrom<EmployeeServiceModel>, IMapTo<EmployeeServiceModel>
     {
-        public int EmpolyeeId { get; set; }
+        public int EmployeeId { get; set; }
 
         public string FirstName { get; set; }
 

@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\InterviewTask.Data\InterviewTask.Data.csproj" />
+    <ProjectReference Include="..\..\Web\InterviewTask.Web.ViewModels\InterviewTask.Web.ViewModels.csproj" />
+    <ProjectReference Include="..\InterviewTask.Services.Models\InterviewTask.Services.Models.csproj" />
+  </ItemGroup>
+
 </Project>
