@@ -14,7 +14,7 @@
 
         public string Address { get; set; }
 
-        public ICollection<OfficeServiceModel> Offices { get; set; }
+        public ICollection<OfficeVieweModel> Offices { get; set; }
 
         public UserBindingModel User { get; set; }
     }

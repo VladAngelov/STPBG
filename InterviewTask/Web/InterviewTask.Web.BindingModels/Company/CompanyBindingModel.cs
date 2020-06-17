@@ -1,9 +1,11 @@
 ﻿namespace InterviewTask.Web.BindingModels.Company
 {
+    using Services.Mapping;
+    using Services.Models.Company;
     using System.ComponentModel.DataAnnotations;
     using TextConstants;
 
-    public class CompanyBindingModel
+    public class CompanyBindingModel : IMapTo<CompanyServiceModel>
     {
         [Required(ErrorMessage = StaticTextConstants.NAME_ERROR_MESSAGE)]
         [StringLength(100, ErrorMessage = StaticTextConstants.LENGTH_ERROR_MESSAGE, MinimumLength = 2)]

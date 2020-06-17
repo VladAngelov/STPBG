@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Services.Mode
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Services.Mapping", "Services\InterviewTask.Services.Mapping\InterviewTask.Services.Mapping.csproj", "{16FEDCC8-0736-45A6-B270-BA6FAC3157F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTask.Web.ViewModels", "Web\InterviewTask.Web.ViewModels\InterviewTask.Web.ViewModels.csproj", "{02E400A9-89EE-45A7-AD98-7C564763C4D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Web.ViewModels", "Web\InterviewTask.Web.ViewModels\InterviewTask.Web.ViewModels.csproj", "{02E400A9-89EE-45A7-AD98-7C564763C4D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTask.Web.BindingModels", "Web\InterviewTask.Web.BindingModels\InterviewTask.Web.BindingModels.csproj", "{F82508D7-4475-4BFD-B18B-22BE1C465B05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewTask.Web.BindingModels", "Web\InterviewTask.Web.BindingModels\InterviewTask.Web.BindingModels.csproj", "{F82508D7-4475-4BFD-B18B-22BE1C465B05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTask.Web.App", "Web\InterviewTask.Web.App\InterviewTask.Web.App.csproj", "{537D9354-C80F-48CA-9F95-397870574B4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{F82508D7-4475-4BFD-B18B-22BE1C465B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F82508D7-4475-4BFD-B18B-22BE1C465B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F82508D7-4475-4BFD-B18B-22BE1C465B05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{537D9354-C80F-48CA-9F95-397870574B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{537D9354-C80F-48CA-9F95-397870574B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{537D9354-C80F-48CA-9F95-397870574B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{537D9354-C80F-48CA-9F95-397870574B4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{16FEDCC8-0736-45A6-B270-BA6FAC3157F7} = {256E486B-4877-4D9F-9819-631C250ACF22}
 		{02E400A9-89EE-45A7-AD98-7C564763C4D2} = {D401DE12-10C0-4F22-AEC7-8B7524C3675D}
 		{F82508D7-4475-4BFD-B18B-22BE1C465B05} = {D401DE12-10C0-4F22-AEC7-8B7524C3675D}
+		{537D9354-C80F-48CA-9F95-397870574B4A} = {D401DE12-10C0-4F22-AEC7-8B7524C3675D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37FA5CC6-FFA8-4344-A910-52138387AD75}

@@ -23,6 +23,6 @@
 
         public int OfficeId { get; set; }
 
-        public OfficeServiceModel Office { get; set; }
+        public OfficeVieweModel Office { get; set; }
     }
 }

@@ -21,7 +21,7 @@
             this.context = context;
         }
 
-        public async Task CreateOfficeAsync(OfficeServiceModel officeServiceModel)
+        public async Task CreateOfficeAsync(OfficeVieweModel officeServiceModel)
         {
             Office office = AutoMapper.Mapper.Map<Office>(officeServiceModel);
 
@@ -51,7 +51,7 @@
             return offices.To<OfficeViewModel>();
         }
 
-        public async Task EditOfficeAsync(int id, OfficeServiceModel officeServiceModel)
+        public async Task EditOfficeAsync(int id, OfficeVieweModel officeServiceModel)
         {
             Office officeFromDb = await this.context
                 .Offices
