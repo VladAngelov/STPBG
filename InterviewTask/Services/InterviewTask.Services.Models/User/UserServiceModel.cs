@@ -1,6 +1,11 @@
 ﻿namespace InterviewTask.Services.Models.User
 {
-    public class UserServiceModel
+    using Data.Models.User;
+    using Services.Mapping;
+    using Microsoft.AspNetCore.Identity;
+
+    public class UserServiceModel : IdentityUser, IMapFrom<InterviewTaskUser>
     {
+        public string FullName { get; set; }
     }
 }

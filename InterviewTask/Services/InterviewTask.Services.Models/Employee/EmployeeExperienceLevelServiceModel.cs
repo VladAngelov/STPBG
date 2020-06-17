@@ -6,6 +6,6 @@
     {
         Junior = EmployeeExperienceLevel.Junior,
         Mid = EmployeeExperienceLevel.Mid,
-        Sebior = EmployeeExperienceLevel.Senior
+        Senior = EmployeeExperienceLevel.Senior
     }
 }

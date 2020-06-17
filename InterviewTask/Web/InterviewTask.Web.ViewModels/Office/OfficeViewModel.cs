@@ -1,10 +1,12 @@
-﻿namespace InterviewTask.Services.Models.Office
+﻿namespace InterviewTask.Web.ViewModels.Office
 {
-    using Models.Company;
-    using Models.Employee;
+    using Services.Models.Company;
+    using Services.Mapping;
+    using Services.Models.Employee;
+    using Services.Models.Office;
     using System.Collections.Generic;
 
-    public class OfficeServiceModel
+    public class OfficeViewModel : IMapFrom<OfficeServiceModel>, IMapTo<OfficeServiceModel>
     {
         public int Id { get; set; }
 

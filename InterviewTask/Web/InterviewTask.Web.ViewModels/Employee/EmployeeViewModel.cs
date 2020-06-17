@@ -1,6 +1,6 @@
 ﻿namespace InterviewTask.Web.ViewModels.Employee
 {
-    using InterviewTask.Services.Mapping;
+    using Services.Mapping;
     using Services.Models.Employee;
     using Services.Models.Office;
     using System;

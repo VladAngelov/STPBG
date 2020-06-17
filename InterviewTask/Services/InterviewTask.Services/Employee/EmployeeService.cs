@@ -2,19 +2,23 @@
 {
     using Data;
     using Data.Models.Employee;
-    using InterviewTask.Services.Mapping;
-    using InterviewTask.Web.ViewModels.Employee;
-    using Microsoft.EntityFrameworkCore;
+    using Mapping;
     using Models.Employee;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Web.ViewModels.Employee;
 
     public class EmployeeService : IEmployeeService
     {
         private readonly InterviewTaskDbContext context;
 
+        public EmployeeService(InterviewTaskDbContext context)
+        {
+            this.context = context;
+        }
 
         public async Task AddEmployeeAsync(EmployeeServiceModel employeeServiceModel)
         {
