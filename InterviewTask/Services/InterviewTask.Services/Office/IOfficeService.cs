@@ -8,7 +8,9 @@
     {
         Task CreateOfficeAsync(OfficeServiceModel officeServiceModel);
 
-        Task<OfficeViewModel> GetMyOfficesAsync(int officeId);
+        Task<OfficeViewModel> GetMyAllOfficesAsync(int companyId);
+
+        Task<OfficeViewModel> GetMyOfficeAsync(int officeId);
 
         Task EditOfficeAsync(int id, OfficeServiceModel officeServiceModel);
 

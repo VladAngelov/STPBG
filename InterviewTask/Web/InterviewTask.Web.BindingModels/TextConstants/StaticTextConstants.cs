@@ -8,6 +8,7 @@
 
         #endregion
 
+
         #region Errors
 
         public const string NAME_ERROR_MESSAGE = "Еnter the name!";
@@ -69,8 +70,8 @@
 
         public const string COMPANY_DISPLAY_NAME = "Name of the company";
 
-         public const string COMPANY_DISPLAY_ADDRESS = "Address of the company";
-             
+        public const string COMPANY_DISPLAY_ADDRESS = "Address of the company";
+
         #endregion
     }
 }

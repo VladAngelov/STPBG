@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="User\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Services\InterviewTask.Services.Mapping\InterviewTask.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\InterviewTask.Services.Models\InterviewTask.Services.Models.csproj" />
     <ProjectReference Include="..\InterviewTask.Web.BindingModels\InterviewTask.Web.BindingModels.csproj" />
