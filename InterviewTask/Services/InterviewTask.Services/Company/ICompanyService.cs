@@ -6,7 +6,7 @@
 
     public interface ICompanyService
     {
-        Task CreateCompanyAsync(CompanyServiceModel companyServiceModel);
+        Task CreateCompanyAsync(string userId, CompanyServiceModel companyServiceModel);
 
         Task<CompanyViewModel> GetMyCompaniesAsync(string userName);
 

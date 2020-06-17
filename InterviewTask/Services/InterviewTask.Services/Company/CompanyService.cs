@@ -20,12 +20,12 @@
             this.context = context;
         }
 
-        public async Task CreateCompanyAsync(CompanyServiceModel companyServiceModel)
+        public async Task CreateCompanyAsync(string userId, CompanyServiceModel companyServiceModel)
         {
             Company company = AutoMapper.Mapper.Map<Company>(companyServiceModel);
+            company.User.Id = userId;
 
             this.context.Companies.Add(company);
-
             await this.context.SaveChangesAsync();          
         }
 
