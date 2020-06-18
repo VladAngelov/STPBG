@@ -6,7 +6,7 @@
 
     public class Employee
     {
-        public int EmpolyeeId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string FirstName { get; set; }

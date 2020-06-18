@@ -21,15 +21,13 @@
             this.context = context;
         }
 
-        public async Task CreateOfficeAsync(OfficeVieweModel officeServiceModel)
+        public async Task CreateOfficeAsync(OfficeServiceModel officeServiceModel)
         {
             Office office = AutoMapper.Mapper.Map<Office>(officeServiceModel);
 
             this.context.Offices.Add(office);
 
             await this.context.SaveChangesAsync();
-
-            throw new System.NotImplementedException();
         }
 
         public async Task<OfficeViewModel> GetMyOfficeAsync(int officeId)
@@ -51,7 +49,7 @@
             return offices.To<OfficeViewModel>();
         }
 
-        public async Task EditOfficeAsync(int id, OfficeVieweModel officeServiceModel)
+        public async Task EditOfficeAsync(int id, OfficeServiceModel officeServiceModel)
         {
             Office officeFromDb = await this.context
                 .Offices

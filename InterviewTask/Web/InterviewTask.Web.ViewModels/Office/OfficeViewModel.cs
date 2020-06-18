@@ -6,7 +6,7 @@
     using Services.Models.Office;
     using System.Collections.Generic;
 
-    public class OfficeViewModel : IMapFrom<OfficeVieweModel>, IMapTo<OfficeVieweModel>
+    public class OfficeViewModel : IMapFrom<OfficeServiceModel>, IMapTo<OfficeServiceModel>
     {
         public int Id { get; set; }
 

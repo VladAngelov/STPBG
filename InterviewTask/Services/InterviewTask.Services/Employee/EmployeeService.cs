@@ -33,7 +33,7 @@
         {
             Employee employeeFromDb = await this.context
                .Employees
-               .SingleOrDefaultAsync(employee => employee.EmpolyeeId == id);
+               .SingleOrDefaultAsync(employee => employee.Id == id);
 
             if (employeeFromDb == null)
             {

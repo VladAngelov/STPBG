@@ -6,13 +6,13 @@
 
     public interface IOfficeService
     {
-        Task CreateOfficeAsync(OfficeVieweModel officeServiceModel);
+        Task CreateOfficeAsync(OfficeServiceModel officeServiceModel);
 
         Task<OfficeViewModel> GetMyAllOfficesAsync(int companyId);
 
         Task<OfficeViewModel> GetMyOfficeAsync(int officeId);
 
-        Task EditOfficeAsync(int id, OfficeVieweModel officeServiceModel);
+        Task EditOfficeAsync(int id, OfficeServiceModel officeServiceModel);
 
         Task DeleteOfficeAsync(int id);
     }

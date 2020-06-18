@@ -1,8 +1,8 @@
 ﻿namespace InterviewTask.Web.BindingModels.Employee
 {
+    using Services.Mapping;
     using Services.Models.Employee;
     using Services.Models.Office;
-    using Services.Mapping;
     using System;
     using System.ComponentModel.DataAnnotations;
     using TextConstants;
@@ -37,10 +37,10 @@
 
         [Required(ErrorMessage = StaticTextConstants.EXPIRIENCE_ERROR)]
         [Display(Name = StaticTextConstants.EMPLOYEE_DISPLAY_EXPIRIENCE)]
-        public EmployeeExperienceLevelBindingModel ExperienceLevel { get; set; }
+        public EmployeeExperienceLevelServiceModel ExperienceLevel { get; set; }
 
         public int OfficeId { get; set; }
 
-        public OfficeVieweModel Office { get; set; }
+        public OfficeServiceModel Office { get; set; }
     }
 }

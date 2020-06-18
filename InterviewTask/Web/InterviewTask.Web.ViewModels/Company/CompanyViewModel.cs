@@ -1,9 +1,9 @@
 ﻿namespace InterviewTask.Web.ViewModels.Company
 {
-    using BindingModels.User;
+    using Office;
+    using Services.Models.User;
     using Services.Mapping;
     using Services.Models.Company;
-    using Services.Models.Office;
     using System.Collections.Generic;
 
     public class CompanyViewModel : IMapFrom<CompanyServiceModel>
@@ -14,8 +14,8 @@
 
         public string Address { get; set; }
 
-        public ICollection<OfficeVieweModel> Offices { get; set; }
+        public ICollection<OfficeViewModel> Offices { get; set; }
 
-        public UserBindingModel User { get; set; }
+        public UserServiceModel User { get; set; }
     }
 }

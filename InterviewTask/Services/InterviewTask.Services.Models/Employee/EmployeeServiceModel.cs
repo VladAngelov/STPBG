@@ -2,7 +2,7 @@
 {
     using Data.Models.Employee;
     using Mapping;
-    using Office;
+    using Models.Office;
     using System;
 
     public class EmployeeServiceModel : IMapFrom<Employee>, IMapTo<Employee>
@@ -19,10 +19,10 @@
 
         public int VacantionDays { get; set; }
 
-        public EmployeeExperienceLevelServiceModel ExperienceLevel { get; set; }
+        public EmployeeExperienceLevel ExperienceLevel { get; set; }
 
         public int OfficeId { get; set; }
 
-        public OfficeVieweModel Office { get; set; }
+        public OfficeServiceModel Office { get; set; }
     }
 }
