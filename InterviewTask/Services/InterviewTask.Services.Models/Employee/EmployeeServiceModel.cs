@@ -1,8 +1,8 @@
 ﻿namespace InterviewTask.Services.Models.Employee
 {
     using Data.Models.Employee;
+    using Data.Models.Office;
     using Mapping;
-    using Models.Office;
     using System;
 
     public class EmployeeServiceModel : IMapFrom<Employee>, IMapTo<Employee>
@@ -23,6 +23,6 @@
 
         public int OfficeId { get; set; }
 
-        public OfficeServiceModel Office { get; set; }
+        public Office Office { get; set; }
     }
 }

@@ -1,32 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using InterviewTask.Web.App.Models;
-
-namespace InterviewTask.Web.App.Controllers
+﻿namespace InterviewTask.Web.App.Controllers
 {
+    using App.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Diagnostics;
+    using System.Threading.Tasks;
+
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController()
         {
-            _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Profile", "User");
+            }
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
+
+        public IActionResult Contacts()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,6 +1,7 @@
 ﻿namespace InterviewTask.Services.Office
 {
     using Models.Office;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Web.ViewModels.Office;
 
@@ -8,9 +9,9 @@
     {
         Task CreateOfficeAsync(OfficeServiceModel officeServiceModel);
 
-        Task<OfficeViewModel> GetMyAllOfficesAsync(int companyId);
+        Task<List<OfficeViewModel>> GetMyAllOfficesAsync(int companyId);
 
-        Task<OfficeViewModel> GetMyOfficeAsync(int officeId);
+        Task<OfficeViewModel> GetByIdAsync(int officeId);
 
         Task EditOfficeAsync(int id, OfficeServiceModel officeServiceModel);
 

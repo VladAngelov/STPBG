@@ -1,0 +1,21 @@
+﻿@model InterviewTask.Web.ViewModels.User.UserDetailsViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="mt-3 mb-3">
+    <form method="get" class="form border-primary-4 rounded p-3 w-70 mx-auto mt-3">
+        <h3 class="font-weight-bold text-center text-white bg-dark">User profile</h3>
+
+        <div id="product-data-holder" class="form-group mx-auto text-center col-md-5 my-3 border-t">
+            <h4 class="text-left">Name: @Model.FullName</h4>
+            <h4 class="text-left">Email: @Model.Email</h4>
+            <div class="nav-item active">
+                <a class="btn btn-outline-secondary mt-1" 
+                   href="/Company/Companies/@this.User.Identity.Name">Companies</a>
+            </div>
+        </div>
+    </form>
+</main>

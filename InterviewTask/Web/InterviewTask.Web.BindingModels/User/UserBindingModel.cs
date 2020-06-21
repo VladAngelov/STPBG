@@ -1,12 +1,16 @@
-﻿namespace InterviewTask.Web.ViewModels.User
+﻿namespace InterviewTask.Web.BindingModels.User
 {
     using Services.Mapping;
     using Services.Models.Company;
     using Services.Models.User;
     using System.Collections.Generic;
 
-    public class UserDetailsViewModel : IMapFrom<UserServiceModel>, IMapTo<UserServiceModel>
+    public class UserBindingModel : IMapFrom<UserServiceModel>, IMapTo<UserServiceModel>
     {
+        public string Username { get; set; }
+
+        public string Id { get; set; }
+
         public string FullName { get; set; }
 
         public string PhoneNumber { get; set; }

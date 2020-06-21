@@ -34,7 +34,7 @@
         [Display(Name = StaticTextConstants.HEADQUARTERS_DISPLAY)]
         public bool Headquarters { get; set; }
 
-        public ICollection<EmployeeServiceModel> Employees { get; set; }
+        public List<EmployeeServiceModel> Employees { get; set; }
 
         public int CompanyId { get; set; }
 

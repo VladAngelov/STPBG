@@ -1,0 +1,47 @@
+﻿@model InterviewTask.Web.BindingModels.Company.CompanyBindingModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create Company";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="bg-dark text-white font-weight-bold text-center p-3 w-60 mx-auto rounded">Create a new company</h3>
+
+<div class="row col-md-6">
+    <form method="post" class="form border-primary-4 rounded p-3 w-70 mx-auto mt-1" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group mx-auto">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Name" class="text-dark h5">Name</label>
+            </div>
+            <input type="text"
+                   id="model"
+                   class="form-control text-primary text-center"
+                   placeholder="Name of the company..."
+                   asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Address" class="text-dark h5"></label>
+            </div>
+            <input type="text"
+                   id="model"
+                   class="form-control text-primary text-center"
+                   placeholder="Address of the company..."
+                   asp-for="Address" />
+            <span asp-validation-for="Address" class="text-danger" />
+        </div>
+
+        <div class="form-group text-center">
+            <input type="submit" value="Create" class="btn btn-outline-success" />
+            <a href="/" class="btn btn-outline-danger">Back</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -6,6 +6,22 @@
 
         public const string DATE_FORMAT = "{0:MM/dd/yyyy}";
 
+        public const string EMAIL_ADDRESS_DISPLAY = "Email address";
+
+        public const string EMAIL_DISPLAY = "Email";
+
+        public const string REMEMBER_ME_DISPLAY = "Remember me?";
+
+        public const string PASSWORD_DISPLAY = "Password";
+
+        public const string PASSWORD_CONFIRM_DISPLAY = "Confirm password";
+
+        public const string FIRST_NAME_DISPLAY = "First name";
+
+        public const string LAST_NAME_DISPLAY = "Last name";
+
+        public const string USERNAME_DISPLAY = "Username";
+
         #endregion
 
 
@@ -13,7 +29,9 @@
 
         public const string NAME_ERROR_MESSAGE = "Еnter the name!";
 
-        public const string LENGTH_ERROR_MESSAGE = "Minimum length 2 and maximum length 30!";
+        public const string LENGTH_ERROR_MESSAGE = "The {0} must be at least {2} and at max {1} characters long!";
+
+        // public const string LENGTH_ERROR_MESSAGE = "Minimum length 2 and maximum length 30!";
 
         public const string NUMBER_ERROR_MESSAGE = "The number should not be zero or less!";
 
@@ -21,9 +39,15 @@
 
         public const string DATE_ERROR_MESSAGE = "Select data!";
 
-        public const string EXPIRIENCE_ERROR = "Select experience of the employee!";
+        public const string EXPIRIENCE_ERROR_MESSAGE = "Select experience of the employee!";
 
-        public const string ADDRESS_ERROR = "Еnter the address!";
+        public const string ADDRESS_ERROR_MESSAGE = "Еnter the address!";
+
+        public const string EMAIL_ERROR_MESSAGE = "Wrong email!";
+
+        public const string PASSWORD_ERROR_MESSAGE = "Wrong password!";
+
+        public const string CONFIRMATION_PASSWORD_ERROR_MESSAGE = "The password and confirmation password do not match.";
 
         #endregion
 

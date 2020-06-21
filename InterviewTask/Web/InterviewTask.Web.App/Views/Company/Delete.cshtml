@@ -1,0 +1,34 @@
+﻿@model InterviewTask.Web.BindingModels.Company.CompanyDeleteModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Delete company";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="bg-dark text-white font-weight-bold text-center p-3 w-60 mx-auto rounded">Delete the company</h3>
+
+<form method="post" class="form border-primary-4 rounded p-3 w-60 mx-auto mt-3" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div id="name-and-price-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Name" class="text-dark h6"></label>
+            </div>
+            <input type="text"
+                   class="form-control text-center"
+                   id="brand"
+                   placeholder="Name..."
+                   value="@Model.Name"
+                   disabled>
+        </div>
+    </div>
+
+    <hr class="hr-2 bg-dark mt-3">
+
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-outline-danger font-weight-bold mr-1">Delete</button>
+        <a href="/" class="btn btn-outline-primary font-weight-bold">Back</a>
+    </div>
+</form>

@@ -1,7 +1,7 @@
 ﻿namespace InterviewTask.Services.Models.Office
 {
-    using Models.Company;
-    using Models.Employee;
+    using Data.Models.Company;
+    using Data.Models.Employee;
     using System.Collections.Generic;
 
     public class OfficeServiceModel
@@ -18,10 +18,10 @@
 
         public bool Headquarters { get; set; }
 
-        public ICollection<EmployeeServiceModel> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
 
         public int CompanyId { get; set; }
 
-        public CompanyServiceModel Company { get; set; }
+        public Company Company { get; set; }
     }
 }

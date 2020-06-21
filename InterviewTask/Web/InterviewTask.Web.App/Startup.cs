@@ -1,13 +1,10 @@
 namespace InterviewTask.Web.App
 {
+    using BindingModels.Company;
+    using BindingModels.Employee;
+    using BindingModels.Office;
     using InterviewTask.Data;
-    using InterviewTask.Services.Mapping;
-    using InterviewTask.Services.Models.Company;
-    using InterviewTask.Services.Models.Employee;
-    using InterviewTask.Services.Models.Office;
-    using InterviewTask.Web.BindingModels.Company;
-    using InterviewTask.Web.BindingModels.Employee;
-    using InterviewTask.Web.BindingModels.Office;
+    using InterviewTask.Data.Models.User;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -17,9 +14,19 @@ namespace InterviewTask.Web.App
     using Microsoft.Extensions.Hosting;
     using Services.Company;
     using Services.Employee;
+    using Services.Mapping;
+    using Services.Models.Company;
+    using Services.Models.Employee;
+    using Services.Models.Office;
+    using Services.Models.User;
     using Services.Office;
+    using Services.User;
     using System.Globalization;
     using System.Reflection;
+    using ViewModels.Company;
+    using ViewModels.Employee;
+    using ViewModels.Office;
+    using ViewModels.User;
 
     public class Startup
     {
@@ -37,7 +44,7 @@ namespace InterviewTask.Web.App
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<InterviewTaskUser, IdentityRole>()
                .AddEntityFrameworkStores<InterviewTaskDbContext>()
                .AddDefaultTokenProviders();
 
@@ -58,6 +65,7 @@ namespace InterviewTask.Web.App
             services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<IOfficeService, OfficeService>();
             services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,13 +74,15 @@ namespace InterviewTask.Web.App
             AutoMapperConfig.RegisterMappings(
                typeof(CompanyBindingModel).GetTypeInfo().Assembly,
                typeof(CompanyServiceModel).GetTypeInfo().Assembly,
-               // typeof(CompanyViewModel).GetTypeInfo().Assembly,
-               // typeof(OfficeVieweModel).GetTypeInfo().Assembly,
+               typeof(CompanyViewModel).GetTypeInfo().Assembly,
+               typeof(OfficeViewModel).GetTypeInfo().Assembly,
                typeof(OfficeBindingModel).GetTypeInfo().Assembly,
                typeof(OfficeServiceModel).GetTypeInfo().Assembly,
                typeof(EmployeeServiceModel).GetTypeInfo().Assembly,
-               typeof(EmployeeBindingModel).GetTypeInfo().Assembly);
-               //typeof(EmployeeViewgModel).GetTypeInfo().Assembly);
+               typeof(EmployeeBindingModel).GetTypeInfo().Assembly,
+               typeof(EmployeeViewModel).GetTypeInfo().Assembly,
+               typeof(UserServiceModel).GetTypeInfo().Assembly,
+               typeof(UserDetailsViewModel).GetTypeInfo().Assembly);
 
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
@@ -83,7 +93,7 @@ namespace InterviewTask.Web.App
                 {
                     context.Database.EnsureCreated();
 
-                    context.SaveChanges();
+                    // context.SaveChanges();
                 }
             }
 

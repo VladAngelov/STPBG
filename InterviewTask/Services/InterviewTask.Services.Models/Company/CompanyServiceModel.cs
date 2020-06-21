@@ -2,7 +2,8 @@
 {
     using Data.Models.Company;
     using Data.Models.Office;
-    using InterviewTask.Services.Mapping;
+    using Data.Models.User;
+    using Services.Mapping;
     using System.Collections.Generic;
 
     public class CompanyServiceModel : IMapFrom<Company>, IMapTo<Company>
@@ -13,6 +14,10 @@
 
         public string Address { get; set; }
 
-        public ICollection<Office> Offices { get; set; }
+        public List<Office> Offices { get; set; }
+
+        public string UserId { get; set; }
+
+        public InterviewTaskUser User { get; set; }
     }
 }

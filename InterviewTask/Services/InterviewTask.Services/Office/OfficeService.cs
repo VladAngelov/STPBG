@@ -30,7 +30,7 @@
             await this.context.SaveChangesAsync();
         }
 
-        public async Task<OfficeViewModel> GetMyOfficeAsync(int officeId)
+        public async Task<OfficeViewModel> GetByIdAsync(int officeId)
         {
             Office office = await this.context
                 .Offices
@@ -39,14 +39,15 @@
             return office.To<OfficeViewModel>();
         }
 
-        public async Task<OfficeViewModel> GetMyAllOfficesAsync(int companyId)
+        public async Task<List<OfficeViewModel>> GetMyAllOfficesAsync(int companyId)
         {
-            List<Office> offices = await this.context
+            List<OfficeViewModel> offices = await this.context
               .Offices
+              .To<OfficeViewModel>()
               .Where(o => o.CompanyId == companyId)
               .ToListAsync();
 
-            return offices.To<OfficeViewModel>();
+            return offices;
         }
 
         public async Task EditOfficeAsync(int id, OfficeServiceModel officeServiceModel)

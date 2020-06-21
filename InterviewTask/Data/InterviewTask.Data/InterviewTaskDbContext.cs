@@ -1,11 +1,11 @@
 ﻿namespace InterviewTask.Data
 {
-    using InterviewTask.Data.Models.User;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using Models.Company;
     using Models.Employee;
     using Models.Office;
+    using Models.User;
 
     public class InterviewTaskDbContext : IdentityDbContext<InterviewTaskUser>
     {

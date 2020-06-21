@@ -35,7 +35,7 @@
 
         public int VacantionDays { get; set; }
 
-        [Required(ErrorMessage = StaticTextConstants.EXPIRIENCE_ERROR)]
+        [Required(ErrorMessage = StaticTextConstants.EXPIRIENCE_ERROR_MESSAGE)]
         [Display(Name = StaticTextConstants.EMPLOYEE_DISPLAY_EXPIRIENCE)]
         public EmployeeExperienceLevelServiceModel ExperienceLevel { get; set; }
 

@@ -20,7 +20,7 @@
 
         public bool Headquarters { get; set; }
 
-        public ICollection<EmployeeServiceModel> Employees { get; set; }
+        public HashSet<EmployeeServiceModel> Employees { get; set; }
 
         public int CompanyId { get; set; }
 

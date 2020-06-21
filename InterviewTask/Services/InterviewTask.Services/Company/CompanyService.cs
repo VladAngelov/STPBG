@@ -3,8 +3,10 @@
     using Data;
     using Data.Models.Company;
     using Mapping;
-    using Models.Company;
     using Microsoft.EntityFrameworkCore;
+    using Models.Company;
+    using Models.Office;
+    using Models.User;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -22,21 +24,67 @@
 
         public async Task CreateCompanyAsync(string userId, CompanyServiceModel companyServiceModel)
         {
-            Company company = AutoMapper.Mapper.Map<Company>(companyServiceModel);
-            company.User.Id = userId;
+            Company company = new Company()
+            {
+                Name = companyServiceModel.Name,
+                Address = companyServiceModel.Address,
+                Offices = companyServiceModel.Offices,
+                UserId = userId
+            };
 
             this.context.Companies.Add(company);
-            await this.context.SaveChangesAsync();          
+            await this.context.SaveChangesAsync();
         }
 
-        public async Task<CompanyViewModel> GetMyCompaniesAsync(string userName)
+        public async Task<CompanyServiceModel> GetById(int id)
         {
-            List<Company> companies = await this.context
+            var company = await this.context
                 .Companies
+                .To<CompanyServiceModel>()
+                .FirstAsync(c => c.Id == id);
+
+            return company;
+        }
+
+        public async Task<List<CompanyViewModel>> GetUserCompaniesAsync(string userName)
+        {
+            List<CompanyServiceModel> companies = await this.context
+                .Companies
+                .To<CompanyServiceModel>()
                 .Where(c => c.User.UserName == userName)
                 .ToListAsync();
 
-            return companies.To<CompanyViewModel>();
+            List<CompanyViewModel> companiesViewModel = new List<CompanyViewModel>();
+
+            for (int i = 0; i < companies.Count; i++)
+            {
+                var comapny = new CompanyViewModel()
+                {
+                    Id = companies[i].Id,
+                    Name = companies[i].Name,
+                    Address = companies[i].Address,
+                    User = companies[i].User.To<UserServiceModel>(),
+                    Offices = this.context.Offices.Select(o => new OfficeServiceModel()
+                    {
+                        City = o.City,
+                        CompanyId = o.CompanyId,
+                        Country = o.Country,
+                        Headquarters = o.Headquarters,
+                        Street = o.Street,
+                        StreetNumber = o.StreetNumber,
+                        Employees = this.context.
+                                   Employees
+                                   .Where(e => e.OfficeId == o.Id)
+                                   .ToList()
+
+                    }).Where(rudb => rudb.CompanyId == companies[i].Id)
+                      .ToList()
+                };
+
+                companiesViewModel.Add(comapny);
+            }
+
+            return companiesViewModel;
         }
 
         public async Task EditCompanyAsync(int id, CompanyServiceModel companyServiceModel)

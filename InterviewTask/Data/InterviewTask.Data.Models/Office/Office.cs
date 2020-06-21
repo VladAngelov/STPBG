@@ -9,7 +9,7 @@
     {
         public Office()
         {
-            this.Employees = new HashSet<Employee>();
+            this.Employees = new List<Employee>();
         }
 
         public int Id { get; set; }
@@ -29,7 +29,7 @@
         [Required]
         public bool Headquarters { get; set; }
 
-        public ICollection<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
 
         public int CompanyId { get; set; }
 
