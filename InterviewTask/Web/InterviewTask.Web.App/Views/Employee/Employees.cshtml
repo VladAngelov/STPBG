@@ -1,5 +1,45 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<InterviewTask.Web.ViewModels.Employee.EmployeeViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
+    ViewData["Title"] = "Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<form class="form border-primary-4 rounded p-3 w-70 mx-auto mt-3">
+    <h1 class="bg-dark text-white font-weight-bold text-center mx-auto rounded">Employees in this office</h1>
+    <div class="nav-item active">
+        <a class="btn btn-outline-secondary mt-2 mb-2 mx-auto"
+           href="/Employee/Create/">
+            Add a new employee
+        </a>
+    </div>
+    <hr />
+    @if (Model.Count == 0 || Model == null)
+    {
+        <h5>No employees</h5>
+    }
+    else
+    {
+        @foreach (var employee in Model)
+        {
+            <div class="col-md-4 border-bot mt-2">
+                <h6>
+                    Name: @employee.FirstName @employee.LastName
+                </h6>
+                <h6>
+                    Start date: @employee.StartDate.ToString("dd/MM/yyyy")
+                </h6>
+                <h6>
+                    Employee's salary: @employee.Salary.ToString("F2")
+                </h6>
+
+                <div class="form-group mt-4">
+                    <a href="/Employee/Edit/@employee.EmployeeId" class="btn btn-outline-warning">Edit</a>
+                    <a href="/Employee/Delete/@employee.EmployeeId" class="btn btn-outline-danger">Delete</a>
+                    <a href="/Employee/Employees" class="btn btn-outline-primary">Back</a>
+                </div>
+                <hr>
+            </div>
+        }
+    }
+</form>

@@ -23,11 +23,11 @@
             this.context = context;
         }
 
-        public async Task CreateOfficeAsync(int companyId, OfficeServiceModel officeServiceModel)
+        public async Task CreateOfficeAsync(int id, OfficeServiceModel officeServiceModel)
         {
             Office office = new Office()
             {
-                CompanyId = companyId,
+                CompanyId = id,
                 City = officeServiceModel.City,
                 Country = officeServiceModel.Country,
                 Headquarters = officeServiceModel.Headquarters,
@@ -35,7 +35,7 @@
                 StreetNumber = officeServiceModel.StreetNumber,
                 Company = this.context
                     .Companies
-                    .Where(c => c.Id == companyId)
+                    .Where(c => c.Id == id)
                     .FirstOrDefault()
             };
 

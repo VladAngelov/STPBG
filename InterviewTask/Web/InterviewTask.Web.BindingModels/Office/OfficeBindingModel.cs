@@ -34,10 +34,10 @@
         [Display(Name = StaticTextConstants.HEADQUARTERS_DISPLAY)]
         public bool Headquarters { get; set; }
 
-        public List<EmployeeServiceModel> Employees { get; set; }
-
         public int CompanyId { get; set; }
 
         public CompanyServiceModel Company { get; set; }
+    
+        public List<EmployeeServiceModel> Employees { get; set; }
     }
 }

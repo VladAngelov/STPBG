@@ -1,9 +1,8 @@
 ﻿namespace InterviewTask.Web.App.Controllers
 {
+    using App.Models;
     using BindingModels.Office;
-    using InterviewTask.Web.App.Models;
     using Microsoft.AspNetCore.Mvc;
-    using Services.Company;
     using Services.Mapping;
     using Services.Models.Office;
     using Services.Office;
@@ -15,7 +14,7 @@
     public class OfficeController : Controller
     {
         private readonly IOfficeService officeService;
-        
+
         public OfficeController(IOfficeService officeService)
         {
             this.officeService = officeService;
@@ -35,13 +34,12 @@
             return View(offices);
         }
 
-        [HttpPost(Name = "Offices")]
-        public async Task<IActionResult> OfficesAsync(int companyId)
+        [HttpGet(Name = "Details")]
+        public async Task<IActionResult> Details(int id)
         {
-            List<OfficeViewModel> offices = await this.officeService
-                .GetMyAllOfficesAsync(companyId);
+            OfficeServiceModel office = await this.officeService.GetByIdAsync(id);
 
-            return View(offices);
+            return View(office.To<OfficeViewModel>());
         }
 
         [HttpGet(Name = "Create")]
@@ -51,14 +49,14 @@
         }
 
         [HttpPost(Name = "Create")]
-        public async Task<IActionResult> Create(int companyId, OfficeBindingModel officeBindingModel)
+        public async Task<IActionResult> Create(int id, OfficeBindingModel officeBindingModel)
         {
             OfficeServiceModel officeServiceModel = AutoMapper.Mapper
               .Map<OfficeServiceModel>(officeBindingModel);
 
-            await this.officeService.CreateOfficeAsync(companyId, officeServiceModel);
+            await this.officeService.CreateOfficeAsync(id, officeServiceModel);
 
-            return this.Redirect("/Office/Offices");
+            return this.Redirect("/");
         }
 
 
@@ -69,8 +67,7 @@
                        
             if (officeBindingModel == null)
             {
-                // TODO: Error Handling
-                return this.Redirect("/Office/Offices");
+                return this.Redirect("/");
             }
 
             return this.View(officeBindingModel);
@@ -84,7 +81,7 @@
 
             await this.officeService.EditOfficeAsync(id, officeServiceModel);
 
-            return this.Redirect("/Office/Offices");
+            return this.Redirect("/");
         }
 
         [HttpGet(Name = "Delete")]
@@ -102,7 +99,6 @@
         }
 
         [HttpPost]
-       // [Route("/Company/Delete/{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             await this.officeService.DeleteOfficeAsync(id);

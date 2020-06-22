@@ -11,7 +11,7 @@
 
         Task<EmployeeViewModel> GetInfoAsync(int employeeId);
 
-        Task AddEmployeeAsync(EmployeeServiceModel employeeServiceModel);
+        Task AddEmployeeAsync(int officeId, EmployeeServiceModel employeeServiceModel);
 
         Task RemoveEmployeeAsync(int id);
 

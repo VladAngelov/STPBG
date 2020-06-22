@@ -20,12 +20,17 @@
             this.context = context;
         }
 
-        public async Task AddEmployeeAsync(EmployeeServiceModel employeeServiceModel)
+        public async Task AddEmployeeAsync(int id, EmployeeServiceModel employeeServiceModel)
         {
-            Employee employee = AutoMapper.Mapper.Map<Employee>(employeeServiceModel);
-
+            Employee employee = AutoMapper.Mapper
+                .Map<Employee>(employeeServiceModel);
+            employee.OfficeId = id;
+            employee.Office = this.context
+                .Offices
+                .Where(o => o.Id == id)
+                .FirstOrDefault();
+            
             this.context.Employees.Add(employee);
-
             await this.context.SaveChangesAsync();       
         }
 
@@ -44,6 +49,10 @@
             employeeFromDb.LastName = employeeServiceModel.LastName;
             employeeFromDb.OfficeId = employeeServiceModel.OfficeId;
             employeeFromDb.Salary = employeeServiceModel.Salary;
+            employeeFromDb.Office = this.context
+                .Offices
+                .Where(o => o.Id == employeeServiceModel.OfficeId)
+                .FirstOrDefault();
 
             this.context.Employees.Update(employeeFromDb);
 
@@ -52,11 +61,20 @@
 
         public async Task<List<EmployeeViewModel>> GetAllEmployeesAsync(int officeId)
         {
-            List<EmployeeViewModel> employees = await this.context
+            List<EmployeeServiceModel> employeesServiceModel = await this.context
                 .Employees
                 .Where(e => e.OfficeId == officeId)
-                .To<EmployeeViewModel>()
+                .To<EmployeeServiceModel>()
                 .ToListAsync();
+
+            List<EmployeeViewModel> employees = new List<EmployeeViewModel>();
+
+            for (int i = 0; i < employeesServiceModel.Count; i++)
+            {
+                var employee = employeesServiceModel[i].To<EmployeeViewModel>();
+
+                employees.Add(employee);
+            }
 
             return employees;
         }
