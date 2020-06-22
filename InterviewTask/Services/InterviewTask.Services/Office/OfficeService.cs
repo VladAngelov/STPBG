@@ -85,7 +85,7 @@
                         .Where(e => e.OfficeId == officesServiceModel[i].Id)
                         .ToHashSet()
                 };
-
+                 // TODO: Try shorter way
                 offices.Add(office);
             }
 

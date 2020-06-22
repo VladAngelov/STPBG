@@ -7,7 +7,7 @@
 
     public class EmployeeViewModel : IMapFrom<EmployeeServiceModel>, IMapTo<EmployeeServiceModel>
     {
-        public int EmployeeId { get; set; }
+        public string Id { get; set; }
 
         public string FirstName { get; set; }
 

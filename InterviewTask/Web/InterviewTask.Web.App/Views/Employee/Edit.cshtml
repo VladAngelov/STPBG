@@ -1,0 +1,82 @@
+﻿@model InterviewTask.Web.BindingModels.Employee.EmployeeBindingModel
+@using InterviewTask.Web.BindingModels.Employee
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    ViewData["Title"] = "Edit the employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row col-md-6">
+    <form method="post" class="form border-primary-4 rounded p-3 w-70 mx-auto mt-1" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group mx-auto">
+            <div class="d-flex justify-content-center">
+                <label asp-for="FirstName" class="text-dark h5"></label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   placeholder="First name of the employee..."
+                   asp-for="FirstName" />
+            <span asp-validation-for="FirstName" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="LastName" class="text-dark h5"></label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   placeholder="Last name of the employee..."
+                   asp-for="LastName" />
+            <span asp-validation-for="LastName" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <label asp-for="StartDate" class="text-dark h5"></label>
+                </div>
+            </div>
+            <input type="date"
+                   class="form-control text-dark text-center"
+                   id="startDate"
+                   placeholder="Start date..."
+                   asp-for="StartDate"
+                   disabled>
+            <span asp-validation-for="StartDate" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="ExperienceLevel" class="text-dark h5"></label>
+            </div>
+            <select class="form-control text-dark text-center"
+                    id="type"
+                    asp-for="ExperienceLevel"
+                    asp-items="@(Html.GetEnumSelectList<EmployeeExperienceLevelBindingModel>())">
+                <option selected disabled>--- Select ---</option>
+            </select>
+            <span asp-validation-for="ExperienceLevel" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <label asp-for="Salary" class="text-dark h5"></label>
+                </div>
+            </div>
+            <input type="number"
+                   class="form-control text-dark text-center"
+                   placeholder="Salary..."
+                   asp-for="Salary">
+            <span asp-validation-for="Salary" class="text-danger" />
+        </div>
+
+
+        <div class="form-group text-center">
+            <input type="submit" value="Edit" class="btn btn-outline-success" />
+            <a href="/" class="btn btn-outline-danger">Back</a>
+        </div>
+    </form>
+</div>

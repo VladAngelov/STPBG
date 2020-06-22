@@ -63,7 +63,9 @@
         [HttpGet(Name = "Edit")]
         public async Task<IActionResult> Edit(int id)
         {
-            OfficeBindingModel officeBindingModel = (await this.officeService.GetByIdAsync(id)).To<OfficeBindingModel>();
+            OfficeBindingModel officeBindingModel = (await this.officeService
+                .GetByIdAsync(id))
+                .To<OfficeBindingModel>();
                        
             if (officeBindingModel == null)
             {

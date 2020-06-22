@@ -22,19 +22,27 @@
 
         public async Task AddEmployeeAsync(int id, EmployeeServiceModel employeeServiceModel)
         {
-            Employee employee = AutoMapper.Mapper
-                .Map<Employee>(employeeServiceModel);
-            employee.OfficeId = id;
-            employee.Office = this.context
-                .Offices
-                .Where(o => o.Id == id)
-                .FirstOrDefault();
+            Employee employee = new Employee()
+            {
+                Id = Guid.NewGuid().ToString(),
+                FirstName = employeeServiceModel.FirstName,
+                LastName = employeeServiceModel.LastName,
+                ExperienceLevel = employeeServiceModel.ExperienceLevel,
+                Salary = employeeServiceModel.Salary,
+                StartDate = employeeServiceModel.StartDate,
+                VacantionDays = employeeServiceModel.VacantionDays,
+                OfficeId = id,
+                Office = this.context
+                    .Offices
+                    .Where(o => o.Id == id)
+                    .FirstOrDefault()
+            };
             
             this.context.Employees.Add(employee);
             await this.context.SaveChangesAsync();       
         }
 
-        public async Task EditEmployeeAsync(int id, EmployeeServiceModel employeeServiceModel)
+        public async Task EditEmployeeAsync(string id, EmployeeServiceModel employeeServiceModel)
         {
             Employee employeeFromDb = await this.context
                .Employees
@@ -45,14 +53,7 @@
                 throw new ArgumentNullException(nameof(employeeFromDb));
             }
 
-            employeeFromDb.FirstName = employeeServiceModel.FirstName;
-            employeeFromDb.LastName = employeeServiceModel.LastName;
-            employeeFromDb.OfficeId = employeeServiceModel.OfficeId;
-            employeeFromDb.Salary = employeeServiceModel.Salary;
-            employeeFromDb.Office = this.context
-                .Offices
-                .Where(o => o.Id == employeeServiceModel.OfficeId)
-                .FirstOrDefault();
+            employeeFromDb.To<EmployeeServiceModel>();
 
             this.context.Employees.Update(employeeFromDb);
 
@@ -79,16 +80,16 @@
             return employees;
         }
 
-        public async Task<EmployeeViewModel> GetInfoAsync(int employeeId)
+        public async Task<EmployeeServiceModel> GetInfoAsync(string employeeId)
         {
             var employee = await this.context.Employees
-                .To<EmployeeViewModel>()
-                .FirstAsync(c => c.EmployeeId == employeeId);
+                .To<EmployeeServiceModel>()
+                .FirstAsync(c => c.Id == employeeId);
 
             return employee;
         }
 
-        public async Task RemoveEmployeeAsync(int id)
+        public async Task RemoveEmployeeAsync(string id)
         {
             Employee employeeFromDb = await this.context
                 .Employees

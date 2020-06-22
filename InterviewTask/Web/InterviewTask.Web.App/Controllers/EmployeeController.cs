@@ -48,33 +48,32 @@
         }
 
         [HttpGet(Name = "Edit")]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(string id)
         {
-            EmployeeBindingModel employeeBindingModel = (await this.employeeService
-                .GetInfoAsync(id))
-                .To<EmployeeBindingModel>();
+            EmployeeBindingModel employeeServiceModel = (await this.employeeService
+                .GetInfoAsync(id)).To<EmployeeBindingModel>();
 
-            if (employeeBindingModel == null)
+            if (employeeServiceModel == null)
             {
                 return this.Redirect("/Employee/Employees");
             }
 
-            return this.View(employeeBindingModel);
+            return this.View(employeeServiceModel);
         }
 
         [HttpPost(Name = "Edit")]
-        public async Task<IActionResult> Edit(int id, EmployeeBindingModel employeeBindingModel)
+        public async Task<IActionResult> Edit(string id, EmployeeBindingModel employeeBindingModel)
         {
             EmployeeServiceModel employeeServiceModel = AutoMapper.Mapper
              .Map<EmployeeServiceModel>(employeeBindingModel);
 
             await this.employeeService.EditEmployeeAsync(id, employeeServiceModel);
 
-            return this.Redirect("/Employee/Employees");
+            return this.Redirect("/");
         }
 
         [HttpGet(Name = "Delete")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
             EmployeeDeleteModel employeeDeleteViewModel = (await this.employeeService
                 .GetInfoAsync(id))
@@ -89,7 +88,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync(string id)
         {
             await this.employeeService.RemoveEmployeeAsync(id);
 

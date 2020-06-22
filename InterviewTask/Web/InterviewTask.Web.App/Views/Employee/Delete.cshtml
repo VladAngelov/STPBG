@@ -1,0 +1,56 @@
+﻿@model InterviewTask.Web.BindingModels.Employee.EmployeeDeleteModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Remove the employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="bg-dark text-white font-weight-bold text-center p-3 w-60 mx-auto rounded">Remove the employee</h3>
+
+<form method="post" class="form border-primary-4 rounded p-3 w-60 mx-auto mt-3" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div id="name-and-price-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="FirstName" class="text-dark h6"></label>
+            </div>
+            <input type="text"
+                   class="form-control text-center"
+                   id="brand"
+                   placeholder="First name..."
+                   value="@Model.FirstName"
+                   disabled>
+        </div>
+
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="LastName" class="text-dark h6"></label>
+            </div>
+            <input type="text"
+                   class="form-control text-center"
+                   id="brand"
+                   placeholder="Last name..."
+                   value="@Model.LastName"
+                   disabled>
+        </div>
+
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="StartDate" class="text-dark h6"></label>
+            </div>
+            <input type="text"
+                   class="form-control text-center"
+                   id="brand"
+                   placeholder="Start date..."
+                   value="@Model.StartDate"
+                   disabled>
+        </div>
+    </div>
+    <hr class="hr-2 bg-dark mt-3">
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-outline-danger font-weight-bold mr-1">Delete</button>
+        <a href="/" class="btn btn-outline-primary font-weight-bold">Back</a>
+    </div>
+</form>

@@ -9,12 +9,12 @@
     {
         Task<List<EmployeeViewModel>> GetAllEmployeesAsync(int officeId);
 
-        Task<EmployeeViewModel> GetInfoAsync(int employeeId);
+        Task<EmployeeServiceModel> GetInfoAsync(string employeeId);
 
         Task AddEmployeeAsync(int officeId, EmployeeServiceModel employeeServiceModel);
 
-        Task RemoveEmployeeAsync(int id);
+        Task RemoveEmployeeAsync(string id);
 
-        Task EditEmployeeAsync(int id, EmployeeServiceModel employeeServiceModel);
+        Task EditEmployeeAsync(string id, EmployeeServiceModel employeeServiceModel);
     }
 }

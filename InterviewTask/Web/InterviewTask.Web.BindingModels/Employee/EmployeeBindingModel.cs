@@ -7,9 +7,9 @@
     using System.ComponentModel.DataAnnotations;
     using TextConstants;
 
-    public class EmployeeBindingModel : IMapTo<EmployeeServiceModel>
+    public class EmployeeBindingModel : IMapTo<EmployeeServiceModel>, IMapFrom<EmployeeServiceModel>
     {
-        public int EmpolyeeId { get; set; }
+        public string Id { get; set; }
 
         [Required(ErrorMessage = StaticTextConstants.NAME_ERROR_MESSAGE)]
         [StringLength(30, ErrorMessage = StaticTextConstants.LENGTH_ERROR_MESSAGE, MinimumLength = 2)]
