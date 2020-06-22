@@ -15,10 +15,6 @@
     {
         @foreach (var company in Model)
         {
-            if (company == null)
-            {
-                <h5>No Companies</h5>
-            }
             <div class="col-md-4 border-bot mt-2">
                 <h6>
                     User: @company.User.FullName

@@ -1,5 +1,77 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model InterviewTask.Web.BindingModels.Office.OfficeBindingModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
+    ViewData["Title"] = "Add a new office";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="bg-dark text-white font-weight-bold text-center p-3 w-60 mx-auto rounded">Create a new office</h3>
+
+<div class="row col-md-6">
+    <form method="post" class="form border-primary-4 rounded p-3 w-70 mx-auto mt-1" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group mx-auto">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Country" class="text-dark h5"></label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   placeholder="Country of the office..."
+                   asp-for="Country" />
+            <span asp-validation-for="Country" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="City" class="text-dark h5"></label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   placeholder="City of the office..."
+                   asp-for="City" />
+            <span asp-validation-for="City" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Street" class="text-dark h5"></label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   placeholder="Street of the office..."
+                   asp-for="Street" />
+            <span asp-validation-for="Street" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="StreetNumber" class="text-dark h5"></label>
+            </div>
+            <input type="number"
+                   class="form-control text-primary text-center"
+                   placeholder="Number of the office's street..."
+                   asp-for="StreetNumber" />
+            <span asp-validation-for="StreetNumber" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Headquarters" class="text-dark h5 mr-5"></label>
+                <input checked="checked"
+                       id="Headquarters"
+                       name="Headquarters"
+                       type="checkbox"
+                       value="false" />
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" value="Create" class="btn btn-outline-success" />
+            <a href="/" class="btn btn-outline-danger">Back</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

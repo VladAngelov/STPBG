@@ -2,7 +2,6 @@
 {
     using App.Models;
     using BindingModels.Company;
-    using InterviewTask.Web.ViewModels.Company;
     using Microsoft.AspNetCore.Mvc;
     using Services.Company;
     using Services.Mapping;
@@ -11,6 +10,7 @@
     using System.Diagnostics;
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using ViewModels.Company;
 
     public class CompanyController : Controller
     {
@@ -20,12 +20,6 @@
         {
             this.companyService = companyService;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
 
         [HttpGet(Name = "Companies")]
         public async Task<IActionResult> Companies()
@@ -54,7 +48,7 @@
 
             await this.companyService.CreateCompanyAsync(userId, companyServiceModel);
 
-            return this.Redirect("/Home/Index");
+            return this.Redirect("/Company/Companies");
         }
 
         [HttpGet(Name = "Edit")]
@@ -62,18 +56,24 @@
         {
             CompanyServiceModel companyServiceModel = (await this.companyService.GetById(id));
 
+            CompanyBindingModel companyBindingModel = AutoMapper.Mapper
+           .Map<CompanyBindingModel>(companyServiceModel);
+
             if (companyServiceModel == null)
             {
                 // TODO: Error Handling
-                return this.Redirect("/");
+                return this.Redirect("/Company/Companies");
             }
 
-            return this.View(companyServiceModel);
+            return this.View(companyBindingModel);
         }
 
         [HttpPost(Name = "Edit")]
-        public async Task<IActionResult> Edit(int id, CompanyServiceModel companyServiceModel)
+        public async Task<IActionResult> Edit(int id, CompanyBindingModel companyBindingModel)
         {
+            CompanyServiceModel companyServiceModel = AutoMapper.Mapper
+             .Map<CompanyServiceModel>(companyBindingModel);
+
             await this.companyService.EditCompanyAsync(id, companyServiceModel);
 
             return this.Redirect("/");
@@ -88,7 +88,7 @@
             if (companyDeleteViewModel == null)
             {
                 // TODO: Error Handling
-                return this.Redirect("/");
+                return this.Redirect("/Company/Companies");
             }
 
             return this.View(companyDeleteViewModel);

@@ -1,25 +1,18 @@
 ﻿namespace InterviewTask.Web.App.Controllers
 {
-    using InterviewTask.Services.Models.Company;
     using Microsoft.AspNetCore.Mvc;
-    using Services.Company;
     using Services.Mapping;
     using Services.User;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ViewModels.Company;
     using ViewModels.User;
 
     public class UserController : Controller
     {
         private readonly IUserService userService;
-        private readonly ICompanyService companyService;
 
-        public UserController(IUserService userService,
-                              ICompanyService companyService)
+        public UserController(IUserService userService)
         {
             this.userService = userService;
-            this.companyService = companyService;
         }
 
         // GET: UserController

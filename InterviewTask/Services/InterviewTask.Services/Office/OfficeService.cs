@@ -3,8 +3,10 @@
     using Data;
     using Data.Models.Employee;
     using Data.Models.Office;
+    using InterviewTask.Services.Models.Company;
     using Mapping;
     using Microsoft.EntityFrameworkCore;
+    using Models.Employee;
     using Models.Office;
     using System;
     using System.Collections.Generic;
@@ -21,12 +23,23 @@
             this.context = context;
         }
 
-        public async Task CreateOfficeAsync(OfficeServiceModel officeServiceModel)
+        public async Task CreateOfficeAsync(int companyId, OfficeServiceModel officeServiceModel)
         {
-            Office office = AutoMapper.Mapper.Map<Office>(officeServiceModel);
+            Office office = new Office()
+            {
+                CompanyId = companyId,
+                City = officeServiceModel.City,
+                Country = officeServiceModel.Country,
+                Headquarters = officeServiceModel.Headquarters,
+                Street = officeServiceModel.Street,
+                StreetNumber = officeServiceModel.StreetNumber,
+                Company = this.context
+                    .Companies
+                    .Where(c => c.Id == companyId)
+                    .FirstOrDefault()
+            };
 
             this.context.Offices.Add(office);
-
             await this.context.SaveChangesAsync();
         }
 
@@ -41,11 +54,38 @@
 
         public async Task<List<OfficeViewModel>> GetMyAllOfficesAsync(int companyId)
         {
-            List<OfficeViewModel> offices = await this.context
+            List<OfficeServiceModel> officesServiceModel = await this.context
               .Offices
-              .To<OfficeViewModel>()
+              .To<OfficeServiceModel>()
               .Where(o => o.CompanyId == companyId)
               .ToListAsync();
+
+            List<OfficeViewModel> offices = new List<OfficeViewModel>();
+
+            for (int i = 0; i < officesServiceModel.Count; i++)
+            {
+                var office = new OfficeViewModel()
+                {
+                    City = officesServiceModel[i].City,
+                    CompanyId = officesServiceModel[i].CompanyId,
+                    Company = this.context
+                        .Companies
+                        .To<CompanyServiceModel>()
+                        .Where(c => c.Id == officesServiceModel[i].CompanyId)
+                        .FirstOrDefault(),
+                    Country = officesServiceModel[i].Country,
+                    Street = officesServiceModel[i].Street,
+                    StreetNumber = officesServiceModel[i].StreetNumber,
+                    Headquarters = officesServiceModel[i].Headquarters,
+                    Employees = this.context
+                        .Employees
+                        .To<EmployeeServiceModel>()
+                        .Where(e => e.OfficeId == officesServiceModel[i].Id)
+                        .ToHashSet()
+                };
+
+                offices.Add(office);
+            }
 
             return offices;
         }

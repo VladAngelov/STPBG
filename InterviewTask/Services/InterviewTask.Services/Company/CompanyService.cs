@@ -48,22 +48,22 @@
 
         public async Task<List<CompanyViewModel>> GetUserCompaniesAsync(string userName)
         {
-            List<CompanyServiceModel> companies = await this.context
+            List<CompanyServiceModel> companiesServiceModel = await this.context
                 .Companies
                 .To<CompanyServiceModel>()
                 .Where(c => c.User.UserName == userName)
                 .ToListAsync();
 
-            List<CompanyViewModel> companiesViewModel = new List<CompanyViewModel>();
+            List<CompanyViewModel> companies = new List<CompanyViewModel>();
 
-            for (int i = 0; i < companies.Count; i++)
+            for (int i = 0; i < companiesServiceModel.Count; i++)
             {
                 var comapny = new CompanyViewModel()
                 {
-                    Id = companies[i].Id,
-                    Name = companies[i].Name,
-                    Address = companies[i].Address,
-                    User = companies[i].User.To<UserServiceModel>(),
+                    Id = companiesServiceModel[i].Id,
+                    Name = companiesServiceModel[i].Name,
+                    Address = companiesServiceModel[i].Address,
+                    User = companiesServiceModel[i].User.To<UserServiceModel>(),
                     Offices = this.context.Offices.Select(o => new OfficeServiceModel()
                     {
                         City = o.City,
@@ -77,14 +77,14 @@
                                    .Where(e => e.OfficeId == o.Id)
                                    .ToList()
 
-                    }).Where(rudb => rudb.CompanyId == companies[i].Id)
+                    }).Where(rudb => rudb.CompanyId == companiesServiceModel[i].Id)
                       .ToList()
                 };
 
-                companiesViewModel.Add(comapny);
+                companies.Add(comapny);
             }
 
-            return companiesViewModel;
+            return companies;
         }
 
         public async Task EditCompanyAsync(int id, CompanyServiceModel companyServiceModel)

@@ -7,7 +7,7 @@
 
     public interface IOfficeService
     {
-        Task CreateOfficeAsync(OfficeServiceModel officeServiceModel);
+        Task CreateOfficeAsync(int companyId, OfficeServiceModel officeServiceModel);
 
         Task<List<OfficeViewModel>> GetMyAllOfficesAsync(int companyId);
 

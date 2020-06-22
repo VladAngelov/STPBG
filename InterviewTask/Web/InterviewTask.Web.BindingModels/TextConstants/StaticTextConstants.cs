@@ -31,8 +31,6 @@
 
         public const string LENGTH_ERROR_MESSAGE = "The {0} must be at least {2} and at max {1} characters long!";
 
-        // public const string LENGTH_ERROR_MESSAGE = "Minimum length 2 and maximum length 30!";
-
         public const string NUMBER_ERROR_MESSAGE = "The number should not be zero or less!";
 
         public const string HEADQUARTERS_ERROR_MESSAGE = "Is it the headquarters?";

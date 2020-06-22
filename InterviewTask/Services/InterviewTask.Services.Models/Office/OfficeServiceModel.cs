@@ -2,9 +2,11 @@
 {
     using Data.Models.Company;
     using Data.Models.Employee;
+    using Data.Models.Office;
+    using InterviewTask.Services.Mapping;
     using System.Collections.Generic;
 
-    public class OfficeServiceModel
+    public class OfficeServiceModel : IMapFrom<Office>, IMapTo<Office>
     {
         public int Id { get; set; }
 
