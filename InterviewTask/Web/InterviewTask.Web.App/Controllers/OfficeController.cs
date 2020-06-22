@@ -1,26 +1,24 @@
 ﻿namespace InterviewTask.Web.App.Controllers
 {
     using BindingModels.Office;
-    using InterviewTask.Services.Company;
-    using InterviewTask.Web.ViewModels.Company;
+    using InterviewTask.Web.App.Models;
     using Microsoft.AspNetCore.Mvc;
+    using Services.Company;
+    using Services.Mapping;
     using Services.Models.Office;
     using Services.Office;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Diagnostics;
     using System.Threading.Tasks;
     using ViewModels.Office;
 
     public class OfficeController : Controller
     {
         private readonly IOfficeService officeService;
-        private readonly ICompanyService companyService;
         
-        public OfficeController(IOfficeService officeService
-                                , ICompanyService companyService)
+        public OfficeController(IOfficeService officeService)
         {
             this.officeService = officeService;
-            this.companyService = companyService;
         }
 
         public IActionResult Index()
@@ -61,6 +59,61 @@
             await this.officeService.CreateOfficeAsync(companyId, officeServiceModel);
 
             return this.Redirect("/Office/Offices");
+        }
+
+
+        [HttpGet(Name = "Edit")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            OfficeBindingModel officeBindingModel = (await this.officeService.GetByIdAsync(id)).To<OfficeBindingModel>();
+                       
+            if (officeBindingModel == null)
+            {
+                // TODO: Error Handling
+                return this.Redirect("/Office/Offices");
+            }
+
+            return this.View(officeBindingModel);
+        }
+
+        [HttpPost(Name = "Edit")]
+        public async Task<IActionResult> Edit(int id, OfficeBindingModel officeBindingModel)
+        {
+            OfficeServiceModel officeServiceModel = AutoMapper.Mapper
+             .Map<OfficeServiceModel>(officeBindingModel);
+
+            await this.officeService.EditOfficeAsync(id, officeServiceModel);
+
+            return this.Redirect("/Office/Offices");
+        }
+
+        [HttpGet(Name = "Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            OfficeDeleteModel officeDeleteViewModel = (await this.officeService.GetByIdAsync(id))
+                .To<OfficeDeleteModel>();
+
+            if (officeDeleteViewModel == null)
+            {
+                return this.Redirect("/");
+            }
+
+            return this.View(officeDeleteViewModel);
+        }
+
+        [HttpPost]
+       // [Route("/Company/Delete/{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            await this.officeService.DeleteOfficeAsync(id);
+
+            return this.Redirect("/");
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

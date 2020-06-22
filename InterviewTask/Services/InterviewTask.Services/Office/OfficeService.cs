@@ -43,13 +43,14 @@
             await this.context.SaveChangesAsync();
         }
 
-        public async Task<OfficeViewModel> GetByIdAsync(int officeId)
+        public async Task<OfficeServiceModel> GetByIdAsync(int officeId)
         {
-            Office office = await this.context
+            OfficeServiceModel office = await this.context
                 .Offices
+                .To<OfficeServiceModel>()
                 .FirstOrDefaultAsync(o => o.Id == officeId);
 
-            return office.To<OfficeViewModel>();
+            return office;
         }
 
         public async Task<List<OfficeViewModel>> GetMyAllOfficesAsync(int companyId)
@@ -66,6 +67,7 @@
             {
                 var office = new OfficeViewModel()
                 {
+                    Id = officesServiceModel[i].Id,
                     City = officesServiceModel[i].City,
                     CompanyId = officesServiceModel[i].CompanyId,
                     Company = this.context

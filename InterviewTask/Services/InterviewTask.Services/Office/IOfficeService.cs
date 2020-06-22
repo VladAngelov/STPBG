@@ -11,7 +11,7 @@
 
         Task<List<OfficeViewModel>> GetMyAllOfficesAsync(int companyId);
 
-        Task<OfficeViewModel> GetByIdAsync(int officeId);
+        Task<OfficeServiceModel> GetByIdAsync(int officeId);
 
         Task EditOfficeAsync(int id, OfficeServiceModel officeServiceModel);
 

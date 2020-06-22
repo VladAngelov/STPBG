@@ -30,15 +30,16 @@
 
             <input type="text"
                    class="form-control text-primary text-center"
-                   placeholder="Brand..."
+                   placeholder="Address..."
                    value="@Model.Address"
                    asp-for="Address">
             <span asp-validation-for="Address" class="text-danger"></span>
         </div>
     </div>
-
+    <hr />
     <div class="d-flex justify-content-center border-t mt-3">
         <button class="btn btn-outline-warning mt-3 font-weight-bold mr-2">Edit the company</button>
         <a href="/" class="btn btn-outline-primary mt-3 font-weight-bold">Back</a>
     </div>
+    <hr />
 </form>

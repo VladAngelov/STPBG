@@ -8,7 +8,7 @@
     using System.ComponentModel.DataAnnotations;
     using TextConstants;
 
-    public class OfficeBindingModel : IMapTo<OfficeServiceModel>
+    public class OfficeBindingModel : IMapTo<OfficeServiceModel>, IMapFrom<OfficeServiceModel>
     {
         [Required(ErrorMessage = StaticTextConstants.NAME_ERROR_MESSAGE)]
         [StringLength(30, ErrorMessage = StaticTextConstants.LENGTH_ERROR_MESSAGE, MinimumLength = 2)]
