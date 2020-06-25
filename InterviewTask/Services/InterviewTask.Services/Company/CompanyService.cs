@@ -5,8 +5,6 @@
     using Mapping;
     using Microsoft.EntityFrameworkCore;
     using Models.Company;
-    using Models.Office;
-    using Models.User;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -58,30 +56,9 @@
 
             for (int i = 0; i < companiesServiceModel.Count; i++)
             {
-                var comapny = new CompanyViewModel()
-                {
-                    Id = companiesServiceModel[i].Id,
-                    Name = companiesServiceModel[i].Name,
-                    Address = companiesServiceModel[i].Address,
-                    User = companiesServiceModel[i].User.To<UserServiceModel>(),
-                    Offices = this.context.Offices.Select(o => new OfficeServiceModel()
-                    {
-                        City = o.City,
-                        CompanyId = o.CompanyId,
-                        Country = o.Country,
-                        Headquarters = o.Headquarters,
-                        Street = o.Street,
-                        StreetNumber = o.StreetNumber,
-                        Employees = this.context.
-                                   Employees
-                                   .Where(e => e.OfficeId == o.Id)
-                                   .ToList()
+                var company = companiesServiceModel[i].To<CompanyViewModel>();
 
-                    }).Where(rudb => rudb.CompanyId == companiesServiceModel[i].Id)
-                      .ToList()
-                };
-
-                companies.Add(comapny);
+                companies.Add(company);
             }
 
             return companies;

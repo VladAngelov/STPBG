@@ -5,64 +5,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <form class="form border-primary-4 rounded p-3 w-70 mx-auto mt-3">
-        <h1 class="bg-dark text-white font-weight-bold text-center mx-auto rounded">Companies</h1>
-        @if (Model.Count == 0 || Model == null)
+<form class="form border-primary-4 rounded p-3 w-70 mx-auto mt-3">
+    <h1 class="bg-dark text-white font-weight-bold text-center mx-auto rounded">Companies</h1>
+    @if (Model.Count == 0 || Model == null)
+    {
+        <h5>No Companies</h5>
+    }
+    else
+    {
+        @for (int i = 0; i < Model.Count; i++)
         {
-            <h5>No Companies</h5>
-        }
-        else
-        {
-            @for (int i = 0; i < Model.Count; i++)
-            {
-                <div class="col-md-4 border-bot mt-2">
-                    <h6>
-                        User: @Model[i].User.FullName
-                    </h6>
-                    <h6>
-                        Name of the company: @Model[i].Name
-                    </h6>
-                    <h6>
-                        Address: @Model[i].Address
-                    </h6>
-                    <h6>
-                        Count of the offices: @Model[i].Offices.Count
-                    </h6>
-                    <div class="form-group mt-4">
-                        <a href="/Office/Offices/@Model[i].Id" class="btn btn-outline-secondary mt-2">Offices</a>
-                        <a href="/Company/Edit/@Model[i].Id" class="btn btn-outline-warning mt-2">Edit</a>
-                        <a href="/Company/Delete/@Model[i].Id" class="btn btn-outline-danger mt-2">Delete</a>
-                        <a href="/" class="btn btn-outline-primary mt-2">Back</a>
-                        <a href="/Office/Create/@Model[i].Id" class="btn btn-outline-success mt-2">Add a new office</a>
-                    </div>
-                    <hr>
+            <div class="col-md-4 border-bot mt-2">
+                <h6>
+                    User: @Model[i].User.FullName
+                </h6>
+                <h6>
+                    Name of the company: @Model[i].Name
+                </h6>
+                <h6>
+                    Address: @Model[i].Address
+                </h6>
+                <h6>
+                    Count of the offices: @Model[i].Offices.Count
+                </h6>
+                <div class="form-group mt-4">
+                    <a href="/Office/Offices/@Model[i].Id" class="btn btn-outline-secondary mt-2">Offices</a>
+                    <a href="/Company/Edit/@Model[i].Id" class="btn btn-outline-warning mt-2">Edit</a>
+                    <a href="/Company/Delete/@Model[i].Id" class="btn btn-outline-danger mt-2">Delete</a>
+                    <a href="/" class="btn btn-outline-primary mt-2">Back</a>
+                    <a href="/Office/Create/@Model[i].Id" class="btn btn-outline-success mt-2">Add a new office</a>
                 </div>
-            }
-
-            @*@foreach (var company in Model)
-            {
-                <div class="col-md-4 border-bot mt-2">
-                    <h6>
-                        User: @company.User.FullName
-                    </h6>
-                    <h6>
-                        Name of the company: @company.Name
-                    </h6>
-                    <h6>
-                        Address: @company.Address
-                    </h6>
-                    <h6>
-                        Count of the offices: @company.Offices.Count
-                    </h6>
-
-                    <div class="form-group mt-4">
-                        <a href="/Office/Offices/@company.Id" class="btn btn-outline-secondary">Offices</a>
-                        <a href="/Company/Edit/@company.Id" class="btn btn-outline-warning">Edit</a>
-                        <a href="/Company/Delete/@company.Id" class="btn btn-outline-danger">Delete</a>
-                        <a href="/" class="btn btn-outline-primary">Back</a>
-                    </div>
-                    <hr>
-                </div>
-            }*@
+                <hr>
+            </div>
         }
-    </form>
+    }
+</form>

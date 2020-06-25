@@ -3,10 +3,8 @@
     using Data;
     using Data.Models.Employee;
     using Data.Models.Office;
-    using InterviewTask.Services.Models.Company;
     using Mapping;
     using Microsoft.EntityFrameworkCore;
-    using Models.Employee;
     using Models.Office;
     using System;
     using System.Collections.Generic;
@@ -65,27 +63,8 @@
 
             for (int i = 0; i < officesServiceModel.Count; i++)
             {
-                var office = new OfficeViewModel()
-                {
-                    Id = officesServiceModel[i].Id,
-                    City = officesServiceModel[i].City,
-                    CompanyId = officesServiceModel[i].CompanyId,
-                    Company = this.context
-                        .Companies
-                        .To<CompanyServiceModel>()
-                        .Where(c => c.Id == officesServiceModel[i].CompanyId)
-                        .FirstOrDefault(),
-                    Country = officesServiceModel[i].Country,
-                    Street = officesServiceModel[i].Street,
-                    StreetNumber = officesServiceModel[i].StreetNumber,
-                    Headquarters = officesServiceModel[i].Headquarters,
-                    Employees = this.context
-                        .Employees
-                        .To<EmployeeServiceModel>()
-                        .Where(e => e.OfficeId == officesServiceModel[i].Id)
-                        .ToHashSet()
-                };
-                 // TODO: Try shorter way
+                var office = officesServiceModel[i].To<OfficeViewModel>();
+
                 offices.Add(office);
             }
 
