@@ -25,5 +25,7 @@
         public int CompanyId { get; set; }
 
         public CompanyServiceModel Company { get; set; }
+
+        public string FullAddress { get; set; }
     }
 }

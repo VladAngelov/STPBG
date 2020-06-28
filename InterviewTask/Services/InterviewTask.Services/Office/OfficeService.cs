@@ -10,7 +10,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Web.ViewModels.Office;
 
     public class OfficeService : IOfficeService
     {
@@ -34,7 +33,11 @@
                 Company = this.context
                     .Companies
                     .Where(c => c.Id == id)
-                    .FirstOrDefault()
+                    .FirstOrDefault(),
+                FullAddress = officeServiceModel.Country + ", " 
+                              + officeServiceModel.City + ", " 
+                              + officeServiceModel.Street + ", " 
+                              + officeServiceModel.StreetNumber
             };
 
             this.context.Offices.Add(office);
@@ -51,22 +54,13 @@
             return office;
         }
 
-        public async Task<List<OfficeViewModel>> GetMyAllOfficesAsync(int companyId)
+        public async Task<List<OfficeServiceModel>> GetMyAllOfficesAsync(int companyId)
         {
-            List<OfficeServiceModel> officesServiceModel = await this.context
+            List<OfficeServiceModel> offices = await this.context
               .Offices
               .To<OfficeServiceModel>()
               .Where(o => o.CompanyId == companyId)
               .ToListAsync();
-
-            List<OfficeViewModel> offices = new List<OfficeViewModel>();
-
-            for (int i = 0; i < officesServiceModel.Count; i++)
-            {
-                var office = officesServiceModel[i].To<OfficeViewModel>();
-
-                offices.Add(office);
-            }
 
             return offices;
         }
@@ -113,6 +107,5 @@
 
             this.context.SaveChanges();
         }
-
     }
 }

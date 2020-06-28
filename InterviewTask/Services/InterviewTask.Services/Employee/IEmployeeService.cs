@@ -1,6 +1,7 @@
 ﻿namespace InterviewTask.Services.Employee
 {
     using Models.Employee;
+    using Models.Office;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Web.ViewModels.Employee;
@@ -16,5 +17,7 @@
         Task RemoveEmployeeAsync(string id);
 
         Task EditEmployeeAsync(string id, EmployeeServiceModel employeeServiceModel);
+
+        Task<List<OfficeServiceModel>> GetCompanyOfficesAsync(string employeeId);
     }
 }

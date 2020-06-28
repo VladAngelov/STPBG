@@ -2,7 +2,6 @@
 {
     using App.Models;
     using BindingModels.Employee;
-    using ViewModels.Employee;
     using Microsoft.AspNetCore.Mvc;
     using Services.Employee;
     using Services.Mapping;
@@ -10,6 +9,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading.Tasks;
+    using ViewModels.Employee;
 
     public class EmployeeController : Controller
     {
@@ -19,7 +19,6 @@
         {
             this.employeeService = employeeService;
         }
-
 
         [HttpGet(Name = "Employees")]
         public async Task<IActionResult> Employees(int id) 
@@ -50,6 +49,19 @@
         [HttpGet(Name = "Edit")]
         public async Task<IActionResult> Edit(string id)
         {
+            var companyOffices = await this.employeeService.GetCompanyOfficesAsync(id);
+
+            Dictionary<int, string> officesAddresses = new Dictionary<int, string>();
+
+            for (int i = 0; i < companyOffices.Count; i++)
+            {
+                officesAddresses.Add(companyOffices[i].Id, 
+                    $"{companyOffices[i].Country}, {companyOffices[i].City}, " +
+                    $"{companyOffices[i].Street}, {companyOffices[i].StreetNumber}");
+            }
+
+            ViewData["AllOffices"] = officesAddresses;
+
             EmployeeBindingModel employeeServiceModel = (await this.employeeService
                 .GetInfoAsync(id)).To<EmployeeBindingModel>();
 

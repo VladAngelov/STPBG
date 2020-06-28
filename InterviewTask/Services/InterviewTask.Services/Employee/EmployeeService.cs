@@ -3,8 +3,10 @@
     using Data;
     using Data.Models.Employee;
     using Mapping;
-    using Models.Employee;
     using Microsoft.EntityFrameworkCore;
+    using Models.Employee;
+    using Models.Office;
+    using Office;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -14,10 +16,30 @@
     public class EmployeeService : IEmployeeService
     {
         private readonly InterviewTaskDbContext context;
+        private readonly IOfficeService officeService;
 
-        public EmployeeService(InterviewTaskDbContext context)
+        public EmployeeService(InterviewTaskDbContext context, IOfficeService officeService)
         {
             this.context = context;
+            this.officeService = officeService;
+        }
+
+        public async Task<List<OfficeServiceModel>> GetCompanyOfficesAsync(string employeeId) 
+        {
+            var employee = await this.context
+                .Employees
+                .Where(e => e.Id == employeeId)
+                .FirstAsync();
+
+            var currnetOffice = await this.context
+                .Offices
+                .Where(o => o.Id == employee.OfficeId)
+                .FirstAsync();
+
+            var companyOffices = await this.officeService
+                .GetMyAllOfficesAsync(currnetOffice.CompanyId);
+
+            return companyOffices;
         }
 
         public async Task AddEmployeeAsync(int id, EmployeeServiceModel employeeServiceModel)
@@ -47,6 +69,13 @@
             Employee employeeFromDb = await this.context
                .Employees
                .SingleOrDefaultAsync(employee => employee.Id == id);
+
+            var office = await this.context
+                .Offices
+                .Where(o => o.FullAddress == employeeServiceModel.Office.FullAddress)
+                .FirstOrDefaultAsync();
+
+            employeeFromDb.Office = office;
 
             if (employeeFromDb == null)
             {

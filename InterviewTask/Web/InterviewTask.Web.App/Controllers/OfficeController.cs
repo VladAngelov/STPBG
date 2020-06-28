@@ -28,8 +28,17 @@
         [HttpGet(Name = "Offices")]
         public async Task<IActionResult> Offices(int id)
         {
-            List<OfficeViewModel> offices = await this.officeService
+            List<OfficeServiceModel> officesServiceModel = await this.officeService
                 .GetMyAllOfficesAsync(id);
+
+            List<OfficeViewModel> offices = new List<OfficeViewModel>();
+
+            for (int i = 0; i < officesServiceModel.Count; i++)
+            {
+                var office = officesServiceModel[i].To<OfficeViewModel>();
+
+                offices.Add(office);
+            }
 
             return View(offices);
         }

@@ -1,10 +1,10 @@
 ﻿namespace InterviewTask.Services.Models.User
 {
+    using Company;
     using Data.Models.User;
     using Mapping;
     using Microsoft.AspNetCore.Identity;
     using System.Collections.Generic;
-    using InterviewTask.Services.Models.Company;
 
     public class UserServiceModel : IdentityUser, IMapFrom<InterviewTaskUser>
     {

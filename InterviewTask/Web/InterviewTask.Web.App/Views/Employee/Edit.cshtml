@@ -5,6 +5,9 @@
 @{
     ViewData["Title"] = "Edit the employee";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var offices = (Dictionary<int, string>)ViewData["AllOffices"];
+
 }
 
 <div class="row col-md-6">
@@ -73,6 +76,17 @@
             <span asp-validation-for="Salary" class="text-danger" />
         </div>
 
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="OfficeId" class="text-dark h5">Address of the office</label>
+            </div>
+            <select class="form-control text-dark text-center"
+                    asp-for="Office.FullAddress"
+                    asp-items="@(new SelectList(offices.Values))">
+                <option selected disabled>@Model.Office.FullAddress</option>
+            </select>
+            <span asp-validation-for="Office.FullAddress" class="text-danger" />
+        </div>
 
         <div class="form-group text-center">
             <input type="submit" value="Edit" class="btn btn-outline-success" />

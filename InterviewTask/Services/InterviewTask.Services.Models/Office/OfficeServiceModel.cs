@@ -25,5 +25,7 @@
         public int CompanyId { get; set; }
 
         public Company Company { get; set; }
+
+        public string FullAddress { get; set; }
     }
 }

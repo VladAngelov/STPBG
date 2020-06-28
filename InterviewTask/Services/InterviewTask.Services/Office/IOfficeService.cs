@@ -3,13 +3,12 @@
     using Models.Office;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Web.ViewModels.Office;
 
     public interface IOfficeService
     {
         Task CreateOfficeAsync(int companyId, OfficeServiceModel officeServiceModel);
 
-        Task<List<OfficeViewModel>> GetMyAllOfficesAsync(int companyId);
+        Task<List<OfficeServiceModel>> GetMyAllOfficesAsync(int companyId);
 
         Task<OfficeServiceModel> GetByIdAsync(int officeId);
 
