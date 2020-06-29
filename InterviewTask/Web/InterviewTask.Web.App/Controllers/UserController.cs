@@ -15,7 +15,6 @@
             this.userService = userService;
         }
 
-        // GET: UserController
         public async Task<IActionResult> Profile()
         {
             UserDetailsViewModel userDetailsViewModel = (await this.userService
@@ -24,27 +23,5 @@
 
             return View(userDetailsViewModel);
         }
-
-
-        //// GET: UserController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: UserController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

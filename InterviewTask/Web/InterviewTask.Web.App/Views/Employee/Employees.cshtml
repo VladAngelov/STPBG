@@ -7,13 +7,6 @@
 
 <form class="form border-primary-4 rounded p-3 w-70 mx-auto mt-3">
     <h1 class="bg-dark text-white font-weight-bold text-center mx-auto rounded">Employees in this office</h1>
-    <div class="nav-item active">
-        <a class="btn btn-outline-secondary mt-2 mb-2 mx-auto"
-           href="/Employee/Create/">
-            Add a new employee
-        </a>
-    </div>
-    <hr />
     @if (Model.Count == 0 || Model == null)
     {
         <h5>No employees</h5>
@@ -32,11 +25,13 @@
                 <h6>
                     Employee's salary: @employee.Salary.ToString("F2")
                 </h6>
-
+                <h6>
+                    Employee's vacantion days: @employee.VacantionDays
+                </h6>
                 <div class="form-group mt-4">
                     <a href="/Employee/Edit/@employee.Id" class="btn btn-outline-warning">Edit</a>
                     <a href="/Employee/Delete/@employee.Id" class="btn btn-outline-danger">Delete</a>
-                    <a href="/Employee/Employees" class="btn btn-outline-primary">Back</a>
+                    <a href="/" class="btn btn-outline-primary">Back</a>
                 </div>
                 <hr>
             </div>

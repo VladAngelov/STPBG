@@ -24,7 +24,7 @@
             this.officeService = officeService;
         }
 
-        public async Task<List<OfficeServiceModel>> GetCompanyOfficesAsync(string employeeId) 
+        public async Task<List<OfficeServiceModel>> GetCompanyOfficesAsync(string employeeId)
         {
             var employee = await this.context
                 .Employees
@@ -32,9 +32,9 @@
                 .FirstAsync();
 
             var currnetOffice = await this.context
-                .Offices
-                .Where(o => o.Id == employee.OfficeId)
-                .FirstAsync();
+                 .Offices
+                 .Where(o => o.Id == employee.OfficeId)
+                 .FirstAsync();
 
             var companyOffices = await this.officeService
                 .GetMyAllOfficesAsync(currnetOffice.CompanyId);
@@ -59,9 +59,9 @@
                     .Where(o => o.Id == id)
                     .FirstOrDefault()
             };
-            
+
             this.context.Employees.Add(employee);
-            await this.context.SaveChangesAsync();       
+            await this.context.SaveChangesAsync();
         }
 
         public async Task EditEmployeeAsync(string id, EmployeeServiceModel employeeServiceModel)
@@ -97,14 +97,7 @@
                 .To<EmployeeServiceModel>()
                 .ToListAsync();
 
-            List<EmployeeViewModel> employees = new List<EmployeeViewModel>();
-
-            for (int i = 0; i < employeesServiceModel.Count; i++)
-            {
-                var employee = employeesServiceModel[i].To<EmployeeViewModel>();
-
-                employees.Add(employee);
-            }
+            var employees = employeesServiceModel.To<List<EmployeeViewModel>>();
 
             return employees;
         }

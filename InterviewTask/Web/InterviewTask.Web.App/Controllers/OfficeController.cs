@@ -31,14 +31,7 @@
             List<OfficeServiceModel> officesServiceModel = await this.officeService
                 .GetMyAllOfficesAsync(id);
 
-            List<OfficeViewModel> offices = new List<OfficeViewModel>();
-
-            for (int i = 0; i < officesServiceModel.Count; i++)
-            {
-                var office = officesServiceModel[i].To<OfficeViewModel>();
-
-                offices.Add(office);
-            }
+            List<OfficeViewModel> offices = officesServiceModel.To<List<OfficeViewModel>>();
 
             return View(offices);
         }
