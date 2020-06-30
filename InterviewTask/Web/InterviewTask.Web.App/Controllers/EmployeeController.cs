@@ -23,10 +23,10 @@
         [HttpGet(Name = "Employees")]
         public async Task<IActionResult> Employees(int id) 
         {
-            List<EmployeeViewModel> employees = await this.employeeService
+            List<EmployeeServiceModel> employees = await this.employeeService
                 .GetAllEmployeesAsync(id);
 
-            return View(employees);
+            return View(employees.To<List<EmployeeViewModel>>());
         }
 
         [HttpGet(Name = "Create")]

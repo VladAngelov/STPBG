@@ -11,7 +11,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Web.ViewModels.Employee;
 
     public class EmployeeService : IEmployeeService
     {
@@ -89,15 +88,19 @@
             context.SaveChanges();
         }
 
-        public async Task<List<EmployeeViewModel>> GetAllEmployeesAsync(int officeId)
+        public async Task<List<EmployeeServiceModel>> GetAllEmployeesAsync(int officeId)
         {
-            List<EmployeeServiceModel> employeesServiceModel = await this.context
+            List<Employee> employeesFromDb = await this.context
                 .Employees
                 .Where(e => e.OfficeId == officeId)
-                .To<EmployeeServiceModel>()
                 .ToListAsync();
 
-            var employees = employeesServiceModel.To<List<EmployeeViewModel>>();
+            for (int i = 0; i < employeesFromDb.Count; i++)
+            {
+                await VacantionDaysAsync(employeesFromDb[i].Id);
+            }
+
+            List<EmployeeServiceModel> employees = employeesFromDb.To<List<EmployeeServiceModel>>();
 
             return employees;
         }
@@ -125,6 +128,66 @@
             this.context.Employees.Remove(employeeFromDb);
 
             this.context.SaveChanges();
+        }
+
+        private async Task VacantionDaysAsync(string employeeId)
+        {
+            var employee = await this.context
+                .Employees
+                .Where(e => e.Id == employeeId)
+                .FirstAsync();
+
+            DateTime startDay = employee.StartDate.Date;
+            DateTime toDay = DateTime.Now.Date;
+
+            TimeSpan span = toDay - startDay;
+            int businessDays = span.Days + 1;
+            int fullWeekCount = businessDays / 7;
+
+            // find out if there are weekends during the time exceedng the full weeks
+            if (businessDays > fullWeekCount * 7)
+            {
+                // we are here to find out if there is a 1-day or 2-days weekend
+                // in the time interval remaining after subtracting the complete weeks
+                int firstDayOfWeek = startDay.DayOfWeek == DayOfWeek.Sunday
+                                     ? 7 : (int)startDay.DayOfWeek;
+                int lastDayOfWeek = toDay.DayOfWeek == DayOfWeek.Sunday
+                                    ? 7 : (int)toDay.DayOfWeek;
+
+                if (lastDayOfWeek < firstDayOfWeek)
+                {
+                    lastDayOfWeek += 7;
+                }
+
+                if (firstDayOfWeek <= 6)
+                {
+                    if (lastDayOfWeek >= 7)// Both Saturday and Sunday are in the remaining time interval
+                    {
+                        businessDays -= 2;
+                    }
+                    else if (lastDayOfWeek >= 6)// Only Saturday is in the remaining time interval
+                    {
+                        businessDays -= 1;
+                    }
+                }
+                else if (firstDayOfWeek <= 7 && lastDayOfWeek >= 7)// Only Sunday is in the remaining time interval
+                {
+                    businessDays -= 1;
+                }
+            }
+
+            // subtract the weekends during the full weeks in the interval
+            businessDays -= fullWeekCount + fullWeekCount;
+
+            double vacantionPerDay = 20.0 / 365.0;
+
+            double vacantionDays = Math.Ceiling(businessDays * vacantionPerDay);
+
+            employee.VacantionDays = (int)vacantionDays;
+
+            this.context.Employees.Update(employee);
+
+            context.SaveChanges();
         }
     }
 }

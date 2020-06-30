@@ -4,11 +4,10 @@
     using Models.Office;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Web.ViewModels.Employee;
 
     public interface IEmployeeService
     {
-        Task<List<EmployeeViewModel>> GetAllEmployeesAsync(int officeId);
+        Task<List<EmployeeServiceModel>> GetAllEmployeesAsync(int officeId);
 
         Task<EmployeeServiceModel> GetInfoAsync(string employeeId);
 
